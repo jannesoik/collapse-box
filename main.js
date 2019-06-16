@@ -1,17 +1,22 @@
-var coll = document.getElementsByClassName("collapsible");
+var inner = document.getElementsByClassName("inner");
+var outer = document.getElementsByClassName("outer");
+var def1=document.getElementById("col-1").innerHTML.defaultValue="Open Section 1";
+console.log(def1);
 var text = document.getElementsByClassName("text");
 var i;
-console.log(text.length);
+// console.log(text[0].innerHTML);
 
-for (i = 0; i < text.length; i++) {
-  coll[i].addEventListener("click", function() {
+
+Array.prototype.forEach.call(outer, function(item, i) {
+  // console.log(item.innerHTML);
+
+  outer[i].addEventListener('click', function(){
     this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    this.innerHTML=content.innerHTML;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
+    
+    if(this.classList.value==='outer active'){
+      outer[i].innerHTML=text[i].innerHTML;
     } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
+      outer[i].innerHTML=def1;
+    }
   });
-}
+});
